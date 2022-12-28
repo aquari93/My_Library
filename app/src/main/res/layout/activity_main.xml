@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:id="@+id/constrain"
+    >
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+      android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:src="@mipmap/asclogoicon"
+        />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:fontFamily="monospace"
+        android:textSize="14sp"
+        android:text="My Library" />
+
+    <Button
+        android:id="@+id/btnMyBooks"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/textView"
+        android:text="See all Books"
+        android:textAllCaps="false"
+   />
+
+    <Button
+        android:id="@+id/btnCurrentlyReadingBooks"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Currently Reading Books"
+        android:layout_below="@id/btnMyBooks"
+        android:layout_centerHorizontal="true"
+        android:textAllCaps="false"
+/>
+
+    <Button
+        android:id="@+id/btnAlreadyReadBooks"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Already Read Books"
+        android:layout_below="@id/btnCurrentlyReadingBooks"
+        android:layout_centerHorizontal="true"
+        android:textAllCaps="false"
+
+
+    />
+
+    <Button
+        android:id="@+id/btnWishList"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Your wishlist"
+        android:layout_below="@id/btnAlreadyReadBooks"
+        android:layout_centerHorizontal="true"
+        android:textAllCaps="false"
+  />
+
+    <Button
+        android:id="@+id/btnFavorites"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="See your favorites"
+        android:layout_below="@id/btnWishList"
+        android:layout_centerHorizontal="true"
+        android:textAllCaps="false"
+ />
+
+    <Button
+        android:id="@+id/btnAbout"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/btnFavorites"
+        android:layout_centerHorizontal="true"
+        android:text="About"
+ />
+
+    <TextView
+        android:id="@+id/txtViewLicense"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/btnAbout"
+        android:layout_centerHorizontal="true"
+        android:text="Developed by Alexandru"
+/>
+</RelativeLayout>
+</ScrollView>
