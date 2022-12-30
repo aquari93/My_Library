@@ -26,17 +26,34 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
+/**
+ * Adaptor custom pentru RecyclerView. Acesta contine byDefault metodele ItemCount,CreateViewHolder si
+ * BindViewHolder. Fiecare fiind explicate mai jos.
+ */
 public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.ViewHolder> {
+    //Asta face doar debugging sa vedem cand este afisata
     private static final String TAG = "BookRecViewAdapter";
+    //Initializam elementele din sablonul adaptor pentru RecycleView
     private ArrayList<Book> _books = new ArrayList<>();
     private Context mContext;
     private String parentActivity;
 
+    //Constructorul adaptorului care este chemat atunci cand se populeaza. Acesta preia ca parametrii contextul in care se afla si parentActivity este locul de unde este chemat.
+    //ParentActivity este adaugat custom pentru a ascunde sau afisa anumite elemente in functie de context.
     public BookRecViewAdapter(Context mContext, String parentActivity) {
         this.mContext = mContext;
         this.parentActivity = parentActivity;
     }
 
+    /**
+     * Metoda onCreateViewHolder, se ocupa de "Umflarea layout-ului" in Activity-ul unde este nevoie de el.
+     * Acesta construieste si returneaza HOLDER-ul care va contine in interior elementele bind-uite de adaptor
+     * si de sablon. De asemenea tot aici se face si relationarea intre adaptor si sablonului lui
+     * custom
+     * @param parent
+     * @param viewType
+     * @return
+     */
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -45,6 +62,13 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
         return holder;
     }
 
+    /**
+     * Metoda onBindViewHolder face exact ceea ce spune. Preia holder-ul definit in onCreateViewHolder si il va
+     * bindui cu elementele din sablon. Tot aici se si populeaza cu date RecycleView-ulul sau se adauga
+     * eventurile de click pe butoane.
+     * @param holder
+     * @param position
+     */
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
         Log.d(TAG, "onBindViewHolder: Called");
@@ -59,6 +83,7 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
             public void onClick(View v) {
                 Intent intent = new Intent(mContext,BookActivity.class);
                 intent.putExtra(BOOK_ID_KEY,_books.get(position).get_id());
+
                 //intent.putExtra("bookName",_books.get(position).get_name());
                 mContext.startActivity(intent);
                // Toast.makeText(mContext, _books.get(position).get_name() + "selected", Toast.LENGTH_SHORT).show();
@@ -67,6 +92,11 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
 
         holder._txtAuthor.setText(_books.get(position).get_author());
         holder._txtDescription.setText(_books.get(position).get_shortDesc());
+        /**
+         * Dupa popularea cu informatiile din Colapsed Layout, verificam daca este expanded si populam si
+         * campurile care sunt ascunse din layout
+         */
+
         if(_books.get(position).is_isExpanded()){
             TransitionManager.beginDelayedTransition(holder._parent);
             holder._expandedRelLayout.setVisibility(View.VISIBLE);
@@ -197,6 +227,7 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
         }
         else
         {
+            //Adaugam o animatie simpla la trecerea din ascuns in vizibil si viceversa
             TransitionManager.beginDelayedTransition(holder._parent);
             holder._expandedRelLayout.setVisibility(View.GONE);
             holder._downArrow.setVisibility(View.VISIBLE);
@@ -209,6 +240,9 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
         return _books.size();
     }
 
+    /**
+     * In aceasta metoda definim ViewHolderul care contine elementele din interfata nepopulate
+     */
     public class ViewHolder extends RecyclerView.ViewHolder{
         private CardView _parent;
         private ImageView _imgBook;

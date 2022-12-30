@@ -16,7 +16,9 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 public class BookActivity extends AppCompatActivity {
-
+    /**
+     * Definirea variabilelor din layout
+     */
     public static final String BOOK_ID_KEY="bookId";
     private TextView _txtBookname, _txtAuthor, _txtPages, _txtDescription;
     private Button _btnAddToWantToRead, _btnAddToAlreadyRead, _btnAddToCurrentlyReading, _btnAddToFavorites;
@@ -26,9 +28,14 @@ public class BookActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book);
 
+        //Initializarea variabilelor in interfata.
         initView();
 
-
+        /**
+         * Avand in vedere ca aceasta Activitate are nevoie de un parametru BOOK_ID_KEY care ii este
+         * trimis atunci cand se face click pe o carte din lista, avem nevoie de preluarea acestuia din intent.
+         * Acest intent este apelat din RecycleViewAdapter.
+         */
         Intent intent = getIntent();
         if(intent!=null){
             //int bookId=intent.getIntExtra("bookId",-1);
@@ -50,6 +57,12 @@ public class BookActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Metoda care se ocupa de butoane si de activarea si dezactivarea acestora. In aceasta metoda
+     * verificam daca cartea exista in lista de favorite. Dezactivam butonul daca aceasta exista deja
+     * si ne ocupam de clickEvent.
+     * @param book
+     */
     private void handleFavoriteBooks(final Book book) {
         ArrayList<Book> favoritesBooks = Utils.getInstance().getFavoriteBooks();
         boolean existInFavoriteBooks=false;
@@ -77,7 +90,12 @@ public class BookActivity extends AppCompatActivity {
             });
         }
     }
-
+    /**
+     * Metoda care se ocupa de butoane si de activarea si dezactivarea acestora. In aceasta metoda
+     * verificam daca cartea exista intr-o lista. Dezactivam butonul daca aceasta exista deja
+     * si ne ocupam de clickEvent.
+     * @param book
+     */
     private void handleCurrentlyReadingBooks(final Book book) {
         ArrayList<Book> currentlyReadingBooks = Utils.getCurrentlyReadingBooks();
         boolean existInCurrentlyReadingBooks=false;
@@ -105,7 +123,12 @@ public class BookActivity extends AppCompatActivity {
             });
         }
     }
-
+    /**
+     * Metoda care se ocupa de butoane si de activarea si dezactivarea acestora. In aceasta metoda
+     * verificam daca cartea exista intr-o lista. Dezactivam butonul daca aceasta exista deja
+     * si ne ocupam de clickEvent.
+     * @param book
+     */
     private void handleWantToReadBooks(final Book book) {
         ArrayList<Book> wantToReadBooks = Utils.getInstance().getWantToReadBooks();
         boolean existInWantToReadBooks=false;
@@ -133,7 +156,12 @@ public class BookActivity extends AppCompatActivity {
             });
         }
     }
-
+    /**
+     * Metoda care se ocupa de butoane si de activarea si dezactivarea acestora. In aceasta metoda
+     * verificam daca cartea exista intr-o lista. Dezactivam butonul daca aceasta exista deja
+     * si ne ocupam de clickEvent.
+     * @param book
+     */
     private void handleAlreadyRead(final Book book){
         ArrayList<Book> alreadyReadBooks = Utils.getInstance().getAlreadyReadBooks();
         boolean existInAlreadyReadBooks=false;
@@ -161,6 +189,11 @@ public class BookActivity extends AppCompatActivity {
             });
         }
     }
+
+    /**
+     * Setam interfata pentru a afisa datele in recyclerview
+     * @param book
+     */
     private void setData(@NonNull Book book){
         _txtBookname.setText(book.get_name());
         _txtAuthor.setText(book.get_author());

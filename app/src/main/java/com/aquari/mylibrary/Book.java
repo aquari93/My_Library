@@ -1,5 +1,8 @@
 package com.aquari.mylibrary;
 
+/**
+ * Un ModelView care contine elementele cartii. Impreuna cu constructorul, getterele si setterele
+ */
 public class Book {
 
     private int _id;
@@ -23,11 +26,18 @@ public class Book {
         _isExpanded=false;
     }
 
-
+    /**
+     * O metoda custom pentru verificarea starii Expanded a RelativeLayout din RecycleView
+     * @return
+     */
     public boolean is_isExpanded() {
         return _isExpanded;
     }
 
+    /**
+     * Se seteaza expanded atunci cand apasam pe butonul downArrow din interfata.
+     * @param _isExpanded
+     */
     public void set_isExpanded(boolean _isExpanded) {
         this._isExpanded = _isExpanded;
     }

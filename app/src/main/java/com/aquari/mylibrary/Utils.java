@@ -17,7 +17,7 @@ public  class Utils {
     private static ArrayList<Book> favoriteBooks;
 
     private Utils() {
-        
+
         if (allBooks ==null){
             allBooks= new ArrayList<>();
             initData();
